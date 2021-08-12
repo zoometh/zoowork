@@ -1,8 +1,41 @@
+#' Isotopic variation on two y-columns.
+#'
+#' `zoo_isotops()` returns a ggplot graph.
+#'
+#' Compare two isotopic variation (eg O, Sr) on a two y-axis plots
+#'
+#' @param dataDir directory of the dataset
+#' @param dataFile name of the dataset
+#' @param img.title title of the output plot
+#' @param iso.names names of the isotopes.By default columns c("O", "Sr")
+#' @param iso.colors color of the isotopes. By default c("turquoise", "turquoise4")
+#' @param img.layout layout for the output. By default c("grid", "align")
+#' @param img.dim dimensions for the output, Width and length. By default list(grid = c(18, 16), align = c(13, 21))
+#' @param img.units By default "cm"
+#' @param col.ERJ x-axis. By default column 'ERJ'
+#' @param col.ind group column. By default column 'ind' (individus)
+#'   be removed?
+#' @return ggplot graphs, in grid layout or aligned vertically.
+#'
+#' @examples
+#' zoo_isotops()
+#' 
+#' zoo_isotops(img.title = "O and Sr isotopic variations",
+#'             iso.names = c("O", "Sr"),
+#'             iso.colors = c("blue", "red"),
+#'             img.layout = "align",
+#'             img.dim = c(13, 21)
+#' )
+#'
+#' }
+
 library(ggplot2)
 library(tibble)
 library(ggpubr)
 library(grid)
 library(gridExtra)
+
+
 
 graphic_df <- function(df, 
                        img.title. = img.title,
@@ -69,17 +102,17 @@ graphic_df <- function(df,
 }
 
 zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
-                   dataFile = "C_O_Sr_etno3.txt",
-                   img.title = "Sheep and goat",
-                   iso.names = c("O", "Sr"),
-                   iso.colors = c("turquoise", "turquoise4"),
-                   img.format = ".pdf",
-                   img.layout = c("grid", "align"),
-                   img.dim = list(grid = c(18, 16), align = c(13, 21)),
-                   img.units = "cm",
-                   # TODO: include these mandatory columns
-                   col.ERJ = "ERJ",
-                   col.ind = "ind"){
+                        dataFile = "C_O_Sr_etno3.txt",
+                        img.title = "Sheep and goat",
+                        iso.names = c("O", "Sr"),
+                        iso.colors = c("turquoise", "turquoise4"),
+                        img.format = ".pdf",
+                        img.layout = c("grid", "align"),
+                        img.dim = list(grid = c(18, 16), align = c(13, 21)),
+                        img.units = "cm",
+                        # TODO: include these mandatory columns
+                        col.ERJ = "ERJ",
+                        col.ind = "ind"){
   iso.left <- iso.names[1]
   iso.right <- iso.names[2]
   y.left.color <- iso.colors[1]
@@ -145,3 +178,10 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
 }
 
 zoo_isotops()
+
+zoo_isotops(img.title = "O and Sr isotopic variations",
+            iso.names = c("O", "Sr"),
+            iso.colors = c("blue", "red"),
+            img.layout = "align",
+            img.dim = c(13, 21)
+)
