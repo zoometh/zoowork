@@ -1,11 +1,20 @@
-# ***zoowork*** functions <br> Methods for Zooarchaeology <img src="https://github.com/zoometh/thomashuet.github.io/blob/main/img/prj_zoowork.png" align="right" width="120"/>
+# ***zoowork*** <br> Methods for Archaeozoology <img src="https://github.com/zoometh/thomashuet.github.io/blob/main/img/prj_zoowork.png" align="right" width="120"/>
 > Thomas Huet, Ariadna Nieto-Espinet
 
+Install the package from GitHub into R:
+
+```
+devtools::install_github("zoometh/zoowork")
+```
 
 ## functions
 
 
-Plot the isotope dataset in grid without confidence intervals
+### zoo_isotops()
+
+<img src="www/align.png" align="center"/>
+
+Plot the isotope dataset in a grid layout without confidence intervals
 
 ```
 zoo_isotops(img.layout = "grid",
