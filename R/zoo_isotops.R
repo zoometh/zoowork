@@ -1,14 +1,16 @@
 #' Isotopic variation on two y-columns.
+#' @name zoo_isotops
 #'
-#' `zoo_isotops()` returns a ggplot graph.
-#'
-#' Compare two isotopic variation (eg O, Sr) on a two y-axis plots
+#' @description Compare two isotopic variations (eg O, Sr) on a two y-axis plots
 #'
 #' @param dataDir directory of the dataset
 #' @param dataFile name of the dataset
 #' @param img.title title of the output plot
 #' @param iso.names names of the isotopes.By default columns c("O", "Sr")
 #' @param iso.colors color of the isotopes. By default c("turquoise", "turquoise4")
+#' @param iso.by.y intervals on y-axis. By default c(5, .0002)
+#' @param x.by interval on x-axis. By default = 5
+#' @param stat.ci show statistics: confidence interval. Default value is TRUE
 #' @param img.layout layout for the output. By default c("grid", "align")
 #' @param img.dim dimensions for the output, Width and length. By default list(grid = c(18, 16), align = c(13, 21))
 #' @param img.units By default "cm"
@@ -20,14 +22,15 @@
 #' @examples
 #' zoo_isotops()
 #' 
-#' zoo_isotops(img.title = "O and Sr isotopic variations",
-#'             iso.names = c("O", "Sr"),
-#'             iso.colors = c("blue", "red"),
-#'             img.layout = "align",
-#'             img.dim = c(13, 21)
-#' )
-#'
-#' }
+#' zoo_isotops(img.layout = "align", 
+#'             img.format = ".png",
+#'             iso.by = c(1, .0002),
+#'             x.by = 5)
+#' 
+#' zoo_isotops(img.layout = "grid",
+#'             iso.colors = c("red", "blue"),
+#'             stat.ci = FALSE,
+#'             img.format = ".png")
 
 library(ggplot2)
 library(tibble)
@@ -43,13 +46,17 @@ graphic_df <- function(df,
                        iso.right. = iso.right,
                        y.left.color. = y.left.color,
                        y.right.color. = y.right.color,
+                       y.left.by. = y.left.by,
+                       y.right.by. = y.right.by,
+                       x.by. = x.by,
+                       stat.ci. = stat.ci,
                        min.left. = min.left,
                        min.right. = min.right,
                        max.left. = max.left,
                        max.right. = max.right,
                        xlim.ERJ. = xlim.ERJ,
-                       a. = a,
-                       b. = b){
+                       a. = a, b. = b,
+                       flag. = flag){
   # df <- df.select
   # df <- read.table(paste0(dataDir, dataFile), header = TRUE, sep = "\t")
   # iso.left.name <- iso.left
@@ -62,12 +69,25 @@ graphic_df <- function(df,
     ind = df$ind,
     ERJ = df$ERJ,
     left = df[ , iso.left.],
-    right = df[ , iso.right.]
+    left.std = runif(length(df[ , iso.left.]), 0, 1),
+    right = df[ , iso.right.],
+    right.std = runif(length(df[ , iso.right.]), 0, 1)
   )
+  if(flag. == "align"){g.title <- img.title.}
+  if(flag. == "grid"){g.title <- df.tb$ind}
   img.out <- ggplot(df.tb, aes(ERJ, left)) +
-    ggtitle(img.title.) +
+    ggtitle(g.title) +
+    # stats
+    {if(stat.ci.)geom_ribbon(aes(ymin = left - left.std,
+                                 ymax = left + left.std),  
+                             fill = y.left.color., alpha = .3)} +
+    {if(stat.ci.)geom_ribbon(aes(ymin = a. + right*b. - right.std,
+                                 ymax = a. + right*b. + right.std),  
+                             fill = y.right.color., alpha = .3)} +
+    # y-left
     geom_line(color = y.left.color., size = 0.2) +
     geom_point(col = y.left.color., size = 1) +
+    # y-right
     geom_line(aes(y = a. + right*b.),
               color = y.right.color.,
               size = 0.2) +
@@ -76,14 +96,15 @@ graphic_df <- function(df,
                size = 1) +
     scale_y_continuous(name = iso.left.,
                        limits = c(min.left., max.left.),
+                       breaks = seq(min.left., max.left., by = y.left.by.),
                        sec.axis = sec_axis(~ (. - a.)/b.,
                                            name = iso.right.,
-                                           breaks = seq(min.right., max.right., by = .0002),
+                                           breaks = seq(min.right., max.right., by = y.right.by.),
                                            labels = scales::number_format(accuracy = 0.0001,
                                                                           decimal.mark = '.'))) +
     scale_x_reverse(breaks = seq(ceiling(min(df.tb$ERJ))-1,
                                  ceiling(max(df.tb$ERJ)),
-                                 by = 5)) +
+                                 by = x.by.)) +
     expand_limits(x = c(ceiling(xlim.ERJ.[1])-1, xlim.ERJ.[2])) +
     theme_bw() +
     theme(
@@ -97,7 +118,7 @@ graphic_df <- function(df,
       axis.title.y.right = element_text(color = y.right.color., size = 7),
       axis.text.y.right = element_text(color = y.right.color., size = 6)
     )
-  print("DONE")
+  # print("DONE")
   return(img.out)
 }
 
@@ -106,6 +127,9 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
                         img.title = "Sheep and goat",
                         iso.names = c("O", "Sr"),
                         iso.colors = c("turquoise", "turquoise4"),
+                        iso.by.y = c(5, .0002),
+                        x.by = 5,
+                        stat.ci = TRUE,
                         img.format = ".pdf",
                         img.layout = c("grid", "align"),
                         img.dim = list(grid = c(18, 16), align = c(13, 21)),
@@ -117,10 +141,13 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
   iso.right <- iso.names[2]
   y.left.color <- iso.colors[1]
   y.right.color <- iso.colors[2]
+  y.left.by <- iso.by.y[1]
+  y.right.by <- iso.by.y[2]
   img.width.grid <- img.dim$grid[1]
   img.height.grid <- img.dim$grid[2]
   img.width.align <- img.dim$align[1]
   img.height.align <- img.dim$align[2]
+  outFile <- gsub("\\..*", "", dataFile)
   df.iso <- read.table(paste0(dataDir, dataFile), 
                        header = TRUE, 
                        sep = "\t")
@@ -138,6 +165,7 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
   a <- ylim.left[1] - b*ylim.right[1]
   
   if(any(img.layout == "grid")){
+    flag <- "grid"
     ll.g <- list()
     for(ind in unique(df.iso[ , col.ind])){
       # ind <- "OVAR1"
@@ -146,28 +174,51 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
                             img.title,
                             iso.left, iso.right, 
                             y.left.color, y.right.color,
+                            y.left.by, y.right.by,
+                            x.by,
+                            stat.ci,
                             min.left, min.right,
                             max.left, max.right,
                             xlim.ERJ,
-                            a,
-                            b)
+                            a, b,
+                            flag)
       ll.g[[length(ll.g) + 1]] <- img.out
     }
-    print(length(ll.g))
-    print("YES")
-    g.grid <- do.call("grid.arrange", c(ll.g, ncol=3))
-    print("YESYES")
-    outFile <- gsub("\\..*", "", dataFile)
+    # g.grid <- do.call("grid.arrange", c(ll.g, ncol = 3))
+    # # add title
+    # g.grid <- g.grid(top = textGrob("Daily QC: Blue",
+    #                                 gp = gpar(fontsize=20,font=3)))
+    g.grid <- grid.arrange(grobs = ll.g, 
+                           ncol = 3, 
+                           top = textGrob(img.title,
+                                          gp = gpar(fontsize = 12)))
     g.out <- paste0(file.path(tempdir()), "\\", outFile, "_grid_", img.format)
     ggsave(g.out, g.grid,
            width = img.width.grid, 
            height = img.height.grid,
            units = img.units)
+    # ggsave(g.out, g.grid,
+    #        width = img.width.grid, 
+    #        height = img.height.grid,
+    #        units = img.units)
     cat(print(paste0("image '", g.out, "' has been saved !")))
   }
   if(any(img.layout == "align")){
     # TODO: ind -> df.iso[ , col.ind]
-    img.out <- graphic_df(df.iso) + facet_grid(ind ~ .)
+    flag <- "align"
+    img.out <- graphic_df(df.iso, 
+                          img.title,
+                          iso.left, iso.right, 
+                          y.left.color, y.right.color,
+                          y.left.by, y.right.by,
+                          x.by,
+                          stat.ci,
+                          min.left, min.right,
+                          max.left, max.right,
+                          xlim.ERJ,
+                          a, b,
+                          flag)
+    img.out <- img.out + facet_grid(ind ~ .)
     g.out <- paste0(file.path(tempdir()), "\\", outFile, "_align_", img.format)
     ggsave(g.out, img.out,
            width = img.width.align, 
@@ -176,12 +227,3 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
     cat(print(paste0("image '", g.out, "' has been saved !")))
   }
 }
-
-zoo_isotops()
-
-zoo_isotops(img.title = "O and Sr isotopic variations",
-            iso.names = c("O", "Sr"),
-            iso.colors = c("blue", "red"),
-            img.layout = "align",
-            img.dim = c(13, 21)
-)

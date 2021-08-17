@@ -1,0 +1,21 @@
+Package: zoowork
+Title: Miscellaneous of Functions for Archaeozoology
+Version: 0.0.0.9000
+Authors@R: c(person("Thomas","Huet", role = c("aut","cre"), email = c("thomashuet7@gmail.com"), comment=c(ORCID="0000-0002-1112-6122")), 
+             person("Ariadna","Nieto-Espinet", role = c("aut"), email = c("arinietoespinet@gmail.com"), comment=c(ORCID="0000-0001-6038-995X")))
+Description: Various functions related to Archaeozoology: isotopes plots, hierachical clustering on NISP (coming soon).
+License: CC-BY
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports:
+    ggplot2,
+    tibble,
+	ggpubr,
+	grid,
+	gridExtra
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+BugsReport: https://github.com/zoometh/zoowork/issues
