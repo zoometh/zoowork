@@ -76,7 +76,7 @@ graphic_df <- function(df,
   )
   if(flag. == "align"){g.title <- img.title.}
   if(flag. == "grid"){g.title <- df.tb$ind}
-  img.out <- ggplot2::ggplot(df.tb, aes(ERJ, left)) +
+  img.out <- ggplot2::ggplot(df.tb, ggplot2::aes(ERJ, left)) +
     ggplot2::ggtitle(g.title) +
     # stats
     {if(stat.ci.) ggplot2::geom_ribbon(ggplot2::aes(ymin = left - left.std,
