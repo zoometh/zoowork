@@ -31,6 +31,7 @@
 #'             iso.colors = c("red", "blue"),
 #'             stat.ci = FALSE,
 #'             img.format = ".png")
+#' @export
 
 library(ggplot2)
 library(tibble)
