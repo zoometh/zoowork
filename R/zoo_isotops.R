@@ -1,46 +1,7 @@
-#' Isotopic variation on two y-columns.
-#' @name zoo_isotops
-#'
-#' @description Compare two isotopic variations (eg O, Sr) on a two y-axis plots
-#'
-#' @param dataDir directory of the dataset
-#' @param dataFile name of the dataset
-#' @param img.title title of the output plot
-#' @param iso.names names of the isotopes.By default columns c("O", "Sr")
-#' @param iso.colors color of the isotopes. By default c("turquoise", "turquoise4")
-#' @param iso.by.y intervals on y-axis. By default c(5, .0002)
-#' @param x.by interval on x-axis. By default = 5
-#' @param stat.ci show statistics: confidence interval. Default value is TRUE
-#' @param img.layout layout for the output. By default c("grid", "align")
-#' @param img.dim dimensions for the output, Width and length. By default list(grid = c(18, 16), align = c(13, 21))
-#' @param img.units By default "cm"
-#' @param col.ERJ x-axis. By default column 'ERJ'
-#' @param col.ind group column. By default column 'ind' (individus)
-#'   be removed?
-#' @return ggplot graphs, in grid layout or aligned vertically.
-#'
-#' @examples
-#' zoo_isotops()
-#' 
-#' zoo_isotops(img.layout = "align", 
-#'             img.format = ".png",
-#'             iso.by = c(1, .0002),
-#'             x.by = 5)
-#' 
-#' zoo_isotops(img.layout = "grid",
-#'             iso.colors = c("red", "blue"),
-#'             stat.ci = FALSE,
-#'             img.format = ".png")
+#' @name graphic_df
+#' @title Graphical function
+#' @rdname graphic_df
 #' @export
-
-# library(ggplot2)
-# library(tibble)
-# library(ggpubr)
-# library(grid)
-# library(gridExtra)
-
-
-
 graphic_df <- function(df, 
                        img.title. = img.title,
                        iso.left. = iso.left,
@@ -123,6 +84,42 @@ graphic_df <- function(df,
   return(img.out)
 }
 
+#' @title Isotopic variation on two y-columns.
+#' @name zoo_isotops
+#' @rdname zoo_isotops
+#' @title Isotopic variation on two y-columns
+#'
+#' @description Compare two isotopic variations (eg O, Sr) on a two y-axis plots
+#'
+#' @param dataDir directory of the dataset
+#' @param dataFile name of the dataset
+#' @param img.title title of the output plot
+#' @param iso.names names of the isotopes.By default columns c("O", "Sr")
+#' @param iso.colors color of the isotopes. By default c("turquoise", "turquoise4")
+#' @param iso.by.y intervals on y-axis. By default c(5, .0002)
+#' @param x.by interval on x-axis. By default = 5
+#' @param stat.ci show statistics: confidence interval. Default value is TRUE
+#' @param img.layout layout for the output. By default c("grid", "align")
+#' @param img.dim dimensions for the output, Width and length. By default list(grid = c(18, 16), align = c(13, 21))
+#' @param img.units By default "cm"
+#' @param col.ERJ x-axis. By default column 'ERJ'
+#' @param col.ind group column. By default column 'ind' (individus)
+#'   be removed?
+#' @return ggplot graphs, in grid layout or aligned vertically.
+#'
+#' @examples
+#' zoo_isotops()
+#' 
+#' zoo_isotops(img.layout = "align", 
+#'             img.format = ".png",
+#'             iso.by = c(1, .0002),
+#'             x.by = 5)
+#' 
+#' zoo_isotops(img.layout = "grid",
+#'             iso.colors = c("red", "blue"),
+#'             stat.ci = FALSE,
+#'             img.format = ".png")
+#' @export
 zoo_isotops <- function(dataDir = paste0(system.file(package = "zoowork"), "/extdata/"),
                         dataFile = "C_O_Sr_etno3.txt",
                         img.title = "Sheep and goat",

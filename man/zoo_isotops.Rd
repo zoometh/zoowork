@@ -2,28 +2,23 @@
 % Please edit documentation in R/zoo_isotops.R
 \name{zoo_isotops}
 \alias{zoo_isotops}
-\alias{graphic_df}
 \title{Isotopic variation on two y-columns.}
 \usage{
-graphic_df(
-  df,
-  img.title. = img.title,
-  iso.left. = iso.left,
-  iso.right. = iso.right,
-  y.left.color. = y.left.color,
-  y.right.color. = y.right.color,
-  y.left.by. = y.left.by,
-  y.right.by. = y.right.by,
-  x.by. = x.by,
-  stat.ci. = stat.ci,
-  min.left. = min.left,
-  min.right. = min.right,
-  max.left. = max.left,
-  max.right. = max.right,
-  xlim.ERJ. = xlim.ERJ,
-  a. = a,
-  b. = b,
-  flag. = flag
+zoo_isotops(
+  dataDir = paste0(system.file(package = "zoowork"), "/extdata/"),
+  dataFile = "C_O_Sr_etno3.txt",
+  img.title = "Sheep and goat",
+  iso.names = c("O", "Sr"),
+  iso.colors = c("turquoise", "turquoise4"),
+  iso.by.y = c(5, 2e-04),
+  x.by = 5,
+  stat.ci = TRUE,
+  img.format = ".pdf",
+  img.layout = c("grid", "align"),
+  img.dim = list(grid = c(18, 16), align = c(13, 21)),
+  img.units = "cm",
+  col.ERJ = "ERJ",
+  col.ind = "ind"
 )
 }
 \arguments{
