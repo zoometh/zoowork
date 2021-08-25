@@ -123,7 +123,7 @@ graphic_df <- function(df,
   return(img.out)
 }
 
-zoo_isotops <- function(dataDir = paste0(system.file(package = "zoowork"), "/extdata/"),
+zoo_isotops <- function(dataDir = paste0(system.file(package = "zoowork"), "/inst/extdata/"),
                         dataFile = "C_O_Sr_etno3.txt",
                         img.title = "Sheep and goat",
                         iso.names = c("O", "Sr"),
