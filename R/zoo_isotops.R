@@ -66,7 +66,7 @@ graphic_df <- function(df,
   # min.right.value <- min.right
   # max.left.value <- max.left
   # max.right.value <- max.right
-  df.tb <- tibble(
+  df.tb <- tibble::tibble(
     ind = df$ind,
     ERJ = df$ERJ,
     left = df[ , iso.left.],
@@ -76,48 +76,48 @@ graphic_df <- function(df,
   )
   if(flag. == "align"){g.title <- img.title.}
   if(flag. == "grid"){g.title <- df.tb$ind}
-  img.out <- ggplot(df.tb, aes(ERJ, left)) +
-    ggtitle(g.title) +
+  img.out <- ggplot2::ggplot(df.tb, aes(ERJ, left)) +
+    ggplot2::ggtitle(g.title) +
     # stats
-    {if(stat.ci.)geom_ribbon(aes(ymin = left - left.std,
-                                 ymax = left + left.std),  
-                             fill = y.left.color., alpha = .3)} +
-    {if(stat.ci.)geom_ribbon(aes(ymin = a. + right*b. - right.std,
-                                 ymax = a. + right*b. + right.std),  
-                             fill = y.right.color., alpha = .3)} +
+    {if(stat.ci.) ggplot2::geom_ribbon(ggplot2::aes(ymin = left - left.std,
+                                                    ymax = left + left.std),  
+                                       fill = y.left.color., alpha = .3)} +
+    {if(stat.ci.) ggplot2::geom_ribbon(ggplot2::aes(ymin = a. + right*b. - right.std,
+                                                    ymax = a. + right*b. + right.std),  
+                                       fill = y.right.color., alpha = .3)} +
     # y-left
-    geom_line(color = y.left.color., size = 0.2) +
-    geom_point(col = y.left.color., size = 1) +
+    ggplot2::geom_line(color = y.left.color., size = 0.2) +
+    ggplot2::geom_point(col = y.left.color., size = 1) +
     # y-right
-    geom_line(aes(y = a. + right*b.),
-              color = y.right.color.,
-              size = 0.2) +
-    geom_point(aes(y = a. + right*b.),
-               color = y.right.color.,
-               size = 1) +
-    scale_y_continuous(name = iso.left.,
-                       limits = c(min.left., max.left.),
-                       breaks = seq(min.left., max.left., by = y.left.by.),
-                       sec.axis = sec_axis(~ (. - a.)/b.,
-                                           name = iso.right.,
-                                           breaks = seq(min.right., max.right., by = y.right.by.),
-                                           labels = scales::number_format(accuracy = 0.0001,
-                                                                          decimal.mark = '.'))) +
-    scale_x_reverse(breaks = seq(ceiling(min(df.tb$ERJ))-1,
-                                 ceiling(max(df.tb$ERJ)),
-                                 by = x.by.)) +
-    expand_limits(x = c(ceiling(xlim.ERJ.[1])-1, xlim.ERJ.[2])) +
-    theme_bw() +
-    theme(
-      title = element_text(size = 8),
-      axis.text.x = element_text(size = 6),
-      axis.text.y = element_text(size = 6),
+    ggplot2::geom_line(ggplot2::aes(y = a. + right*b.),
+                       color = y.right.color.,
+                       size = 0.2) +
+    ggplot2::geom_point(ggplot2::aes(y = a. + right*b.),
+                        color = y.right.color.,
+                        size = 1) +
+    ggplot2::scale_y_continuous(name = iso.left.,
+                                limits = c(min.left., max.left.),
+                                breaks = seq(min.left., max.left., by = y.left.by.),
+                                ggplot2::sec.axis = sec_axis(~ (. - a.)/b.,
+                                                             name = iso.right.,
+                                                             breaks = seq(min.right., max.right., by = y.right.by.),
+                                                             labels = scales::number_format(accuracy = 0.0001,
+                                                                                            decimal.mark = '.'))) +
+    ggplot2::scale_x_reverse(breaks = seq(ceiling(min(df.tb$ERJ))-1,
+                                          ceiling(max(df.tb$ERJ)),
+                                          by = x.by.)) +
+    ggplot2::expand_limits(x = c(ceiling(xlim.ERJ.[1])-1, xlim.ERJ.[2])) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(
+      title = ggplot2::element_text(size = 8),
+      axis.text.x = ggplot2::element_text(size = 6),
+      axis.text.y = ggplot2::element_text(size = 6),
       # left y
-      axis.title.y.left = element_text(color = y.left.color., size = 7),
-      axis.text.y.left = element_text(color = y.left.color., size = 6),
+      axis.title.y.left = ggplot2::element_text(color = y.left.color., size = 7),
+      axis.text.y.left = ggplot2::element_text(color = y.left.color., size = 6),
       # right y
-      axis.title.y.right = element_text(color = y.right.color., size = 7),
-      axis.text.y.right = element_text(color = y.right.color., size = 6)
+      axis.title.y.right = ggplot2::element_text(color = y.right.color., size = 7),
+      axis.text.y.right = ggplot2::element_text(color = y.right.color., size = 6)
     )
   # print("DONE")
   return(img.out)
@@ -189,15 +189,15 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
     # # add title
     # g.grid <- g.grid(top = textGrob("Daily QC: Blue",
     #                                 gp = gpar(fontsize=20,font=3)))
-    g.grid <- grid.arrange(grobs = ll.g, 
-                           ncol = 3, 
-                           top = textGrob(img.title,
-                                          gp = gpar(fontsize = 12)))
+    g.grid <- gridExtra::grid.arrange(grobs = ll.g, 
+                                      ncol = 3, 
+                                      top = grid::textGrob(img.title,
+                                                           gp = grid::gpar(fontsize = 12)))
     g.out <- paste0(file.path(tempdir()), "\\", outFile, "_grid_", img.format)
-    ggsave(g.out, g.grid,
-           width = img.width.grid, 
-           height = img.height.grid,
-           units = img.units)
+    ggplot2::ggsave(g.out, g.grid,
+                    width = img.width.grid, 
+                    height = img.height.grid,
+                    units = img.units)
     # ggsave(g.out, g.grid,
     #        width = img.width.grid, 
     #        height = img.height.grid,
@@ -219,12 +219,12 @@ zoo_isotops <- function(dataDir = paste0(getwd(), "/extdata/"),
                           xlim.ERJ,
                           a, b,
                           flag)
-    img.out <- img.out + facet_grid(ind ~ .)
+    img.out <- img.out + ggplot2::facet_grid(ind ~ .)
     g.out <- paste0(file.path(tempdir()), "\\", outFile, "_align_", img.format)
-    ggsave(g.out, img.out,
-           width = img.width.align, 
-           height = img.height.align,
-           units = img.units)
+    ggplot2::ggsave(g.out, img.out,
+                    width = img.width.align, 
+                    height = img.height.align,
+                    units = img.units)
     cat(print(paste0("image '", g.out, "' has been saved !")))
   }
 }
