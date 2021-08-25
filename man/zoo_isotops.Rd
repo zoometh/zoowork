@@ -2,7 +2,30 @@
 % Please edit documentation in R/zoo_isotops.R
 \name{zoo_isotops}
 \alias{zoo_isotops}
+\alias{graphic_df}
 \title{Isotopic variation on two y-columns.}
+\usage{
+graphic_df(
+  df,
+  img.title. = img.title,
+  iso.left. = iso.left,
+  iso.right. = iso.right,
+  y.left.color. = y.left.color,
+  y.right.color. = y.right.color,
+  y.left.by. = y.left.by,
+  y.right.by. = y.right.by,
+  x.by. = x.by,
+  stat.ci. = stat.ci,
+  min.left. = min.left,
+  min.right. = min.right,
+  max.left. = max.left,
+  max.right. = max.right,
+  xlim.ERJ. = xlim.ERJ,
+  a. = a,
+  b. = b,
+  flag. = flag
+)
+}
 \arguments{
 \item{dataDir}{directory of the dataset}
 
