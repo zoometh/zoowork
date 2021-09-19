@@ -2,3 +2,4 @@
 
 export(graphic_df)
 export(zoo_isotops)
+export(zoo_legends)

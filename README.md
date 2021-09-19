@@ -1,5 +1,9 @@
-# ***zoowork*** R package <br> Methods for Archaeozoology <img src="https://github.com/zoometh/thomashuet.github.io/blob/main/img/prj_zoowork.png" align="right" width="120"/>
+# ***zoowork*** R package <br> Methods for Archaeozoology <img src="https://github.com/zoometh/thomashuet.github.io/blob/main/img/prj_zoowork.png" align="right" width="110"/>
 > Thomas Huet, Ariadna Nieto-Espinet
+
+***Zoowork*** R package aims to gives functions to handle large archaeozoological datasets, like for [this study](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0246201)
+
+## Install
 
 Install the package from GitHub into R:
 
@@ -9,6 +13,11 @@ devtools::install_github("zoometh/zoowork")
 
 ## functions
 
+### zoo_legends()
+
+<img src="www/legend_sites_types.png" align="center" width="400"/>
+
+Read a XLSX file of legend and plot them
 
 ### zoo_isotops()
 
