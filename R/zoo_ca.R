@@ -122,7 +122,7 @@ zoo_ca <- function(df = NA,
     }
   }
   # graphes CA
-  gca_tsite <- ggplot2::ggplot(ca_all_tsite, aes(CA1, CA2)) +
+  gca_tsite <- ggplot2::ggplot(ca_all_tsite, ggplot2::aes(CA1, CA2)) +
     ggplot2::geom_text(ggplot2::aes(x = min(CA1_interval),
                                     y = max(CA2_interval),
                                     label = per), 
