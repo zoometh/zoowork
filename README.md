@@ -23,6 +23,10 @@ Read a XLSX file of legend and plot them
 
 ### zoo_ca
 
+Compute Correspondance Analysis on NISP
+
+<img src="www/ca.png" align="center" width="500"/>
+
 ```
 df <- zoo_read()
 lorder_period <- zoo_order_period(df)
