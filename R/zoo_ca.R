@@ -165,7 +165,7 @@ zoo_ca <- function(df = NA,
                                                fill = NA, 
                                                size = 0.2))+
     ggplot2::theme(panel.background = ggplot2::element_rect(fill = 'transparent'))+
-    ggplot2::theme(panel.spacing.y = unit(0, "lines")) +
+    ggplot2::theme(panel.spacing.y = ggplot2::unit(0, "lines")) +
     ggplot2::scale_x_continuous(limits = CA1_interval, expand = c(0, 0))+
     ggplot2::scale_y_continuous(limits = CA2_interval, expand = c(0, 0))+
     ggplot2::scale_colour_identity() +
