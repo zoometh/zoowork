@@ -154,17 +154,17 @@ zoo_ca <- function(df = NA,
                        angle = 90,
                        size = 2,
                        alpha = 0.5)+
-    ggplot2::theme(axis.text = element_text(size = 5),
-                   axis.title.x = element_text(size = 8),
-                   axis.title.y = element_text(size = 8))+
-    ggplot2::theme(axis.ticks = element_line(size = 0.2))+
+    ggplot2::theme(axis.text = ggplot2::element_text(size = 5),
+                   axis.title.x = ggplot2::element_text(size = 8),
+                   axis.title.y = ggplot2::element_text(size = 8))+
+    ggplot2::theme(axis.ticks = ggplot2::element_line(size = 0.2))+
     ggplot2::theme(legend.position = "none")+
-    ggplot2::theme(strip.text.x = element_text(size = 8),
-                   strip.text.y = element_blank())+
-    ggplot2::theme(panel.border = element_rect(colour = 'black',
+    ggplot2::theme(strip.text.x = ggplot2::element_text(size = 8),
+                   strip.text.y = ggplot2::element_blank())+
+    ggplot2::theme(panel.border = ggplot2::element_rect(colour = 'black',
                                                fill = NA, 
                                                size = 0.2))+
-    ggplot2::theme(panel.background = element_rect(fill = 'transparent'))+
+    ggplot2::theme(panel.background = ggplot2::element_rect(fill = 'transparent'))+
     ggplot2::theme(panel.spacing.y = unit(0, "lines")) +
     ggplot2::scale_x_continuous(limits = CA1_interval, expand = c(0, 0))+
     ggplot2::scale_y_continuous(limits = CA2_interval, expand = c(0, 0))+
