@@ -5,8 +5,8 @@
 \title{Read a XLSX dataset}
 \usage{
 zoo_read(
-  xlsx = paste0(getwd(),
-    "/inst/extdata/Type_Site_PlosOne_CAT_14_TOM_rvTH_6_ZOOWORK.xlsx"),
+  xlsx = paste0(system.file(package = "zoowork"), "/extdata/",
+    "Type_Site_PlosOne_CAT_14_TOM_rvTH_6_ZOOWORK.xlsx"),
   sheet = 1,
   num_column = "num",
   key_column = "key",

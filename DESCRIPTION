@@ -15,7 +15,8 @@ Imports:
 	ggpubr,
 	grid,
 	gridExtra,
-	FactoMineR
+	FactoMineR,
+	DescTools
 Suggests: 
     knitr,
     rmarkdown

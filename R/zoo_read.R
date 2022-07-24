@@ -21,7 +21,8 @@ zoo_read <- function(xlsx = paste0(system.file(package = "zoowork"), "/extdata/"
                      num_column = "num",
                      key_column = "key",
                      period_column = "period"){
-  print(paste0("* read NISP from '", DescTools::SplitPath(xlsx)$fullfilename,"' file *"))
+  print(paste0("* read NISP from '", DescTools::SplitPath(xlsx)$fullfilename,"' file"))
+  print(paste0("from the folder: '", DescTools::SplitPath(xlsx)$fullpath))
   CATnisp <- openxlsx::read.xlsx(xlsx,
                                  sheet = sheet,
                                  rowNames = F,
