@@ -25,9 +25,13 @@ Read a XLSX file of legend and plot them
 
 Read a sample of the NISP dataset used by Nieto et al. 2021[^1]
 
+```
+df <- zoo_read()
+```
+
 ### zoo_ca
 
-Compute Correspondance Analysis on NISP
+Compute Correspondance Analysis on NISP and create a gglot
 
 <img src="www/ca.png" align="center" width="500"/>
 
@@ -36,7 +40,6 @@ df <- zoo_read()
 lorder_period <- zoo_order_period(df)
 typsit_symb <- zoo_legends(worksheets = c("sites_types"))
 zoo_ca(df = df, lorder_period = lorder_period, typsit_symb = typsit_symb)
-
 ```
 
 ### zoo_isotops
