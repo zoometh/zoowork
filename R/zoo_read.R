@@ -16,7 +16,7 @@
 #' df <- zoo_read()
 #'
 #' @export
-zoo_read <- function(xlsx = paste0(getwd(), "/inst/extdata/Type_Site_PlosOne_CAT_14_TOM_rvTH_6_ZOOWORK.xlsx"),
+zoo_read <- function(xlsx = paste0(system.file(package = "zoowork"), "/extdata/", "Type_Site_PlosOne_CAT_14_TOM_rvTH_6_ZOOWORK.xlsx"),
                      sheet = 1,
                      num_column = "num",
                      key_column = "key",
