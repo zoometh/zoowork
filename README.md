@@ -17,7 +17,7 @@ devtools::install_github("zoometh/zoowork")
 
 ### zoo_legends
 
-<img src="www/legend_sites_types.png" align="center" width="400"/>
+<img src="www/legend_sites_types.png" align="center" width="300"/>
 
 Read a XLSX file of legend and plot them
 
