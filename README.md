@@ -23,7 +23,7 @@ Read a XLSX file of legend and plot them
 
 ### zoo_read
 
-Read a sample of the NISP dataset used by Nieto et al. 2021[^1] with the following bibliographical references: https://doi.org/10.1371/journal.pone.0246201.s003
+Read a sample of the NISP dataset used by Nieto et al. 2021[^1] with this Supporting information (S1): https://doi.org/10.1371/journal.pone.0246201.s003
 
 ```
 df <- zoo_read()
