@@ -21,6 +21,10 @@ devtools::install_github("zoometh/zoowork")
 
 Read a XLSX file of legend and plot them
 
+### zoo_read
+
+Read a sample of the NISP dataset used by Nieto et al. 2021[^1]
+
 ### zoo_ca
 
 Compute Correspondance Analysis on NISP
@@ -59,3 +63,5 @@ zoo_isotops(img.layout = "align",
 ### zoo_hc
 
 Hierarchical clustering on NISP distributions (coming soon)
+
+[^1]: Espinet, A. N., Huet, T., Trentacoste, A., Guimarães, S., Orengo, H., & Valenzuela-Lamas, S. (2021). *Resilience and livestock adaptations to demographic growth and technological change: A diachronic perspective from the Late Bronze Age to Late Antiquity in NE Iberia*. PloS one, 16(2), e0246201. doi: https://doi.org/10.1371/journal.pone.0246201
