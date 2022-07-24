@@ -34,4 +34,6 @@ Plot different legends for: sites' types, sites' zones (geographical areas), etc
 zoo_legends()
 
 zoo_legends(worksheets = c("sites_types", "sites_zones"))
+
+sites_types <- zoo_legends(worksheets = c("sites_types"))
 }

@@ -13,15 +13,25 @@ Install the package from GitHub into R:
 devtools::install_github("zoometh/zoowork")
 ```
 
-## functions
+## Principal functions
 
-### zoo_legends()
+### zoo_legends
 
 <img src="www/legend_sites_types.png" align="center" width="400"/>
 
 Read a XLSX file of legend and plot them
 
-### zoo_isotops()
+### zoo_ca
+
+```
+df <- zoo_read()
+lorder_period <- zoo_order_period(df)
+typsit_symb <- zoo_legends(worksheets = c("sites_types"))
+zoo_ca(df = df, lorder_period = lorder_period, typsit_symb = typsit_symb)
+
+```
+
+### zoo_isotops
 
 <img src="www/align.png" align="center" width="500"/>
 
@@ -42,6 +52,6 @@ zoo_isotops(img.layout = "align",
 )
 ```
 
-### zoo_nisp_hc()
+### zoo_hc
 
 Hierarchical clustering on NISP distributions (coming soon)

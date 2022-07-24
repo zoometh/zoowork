@@ -17,23 +17,25 @@
 #' zoo_legends()
 #' 
 #' zoo_legends(worksheets = c("sites_types", "sites_zones"))
+#' 
+#' sites_types <- zoo_legends(worksheets = c("sites_types"))
 #' @export
 zoo_legends <- function(dataDir = paste0(system.file(package = "zoowork"), "/extdata/"),
                         dataFile = "legends.xlsx",
                         worksheets = c("sites_types", "sites_zones", "taxon_types"),
                         outDir = paste0(system.file(package = "zoowork"), "/extdata/")){
-  myblancktheme <- theme(axis.line = ggplot2::element_blank(),
-                         axis.text.x = ggplot2::element_blank(),
-                         axis.text.y = ggplot2::element_blank(),
-                         axis.ticks = ggplot2::element_blank(),
-                         axis.title.x = ggplot2::element_blank(),
-                         axis.title.y = ggplot2::element_blank(),
-                         legend.position = "none",
-                         panel.background = ggplot2::element_blank(),
-                         panel.border = ggplot2::element_blank(),
-                         panel.grid.major = ggplot2::element_blank(),
-                         panel.grid.minor = ggplot2::element_blank(),
-                         plot.background = ggplot2::element_blank())
+  myblancktheme <- ggplot2::theme(axis.line = ggplot2::element_blank(),
+                                  axis.text.x = ggplot2::element_blank(),
+                                  axis.text.y = ggplot2::element_blank(),
+                                  axis.ticks = ggplot2::element_blank(),
+                                  axis.title.x = ggplot2::element_blank(),
+                                  axis.title.y = ggplot2::element_blank(),
+                                  legend.position = "none",
+                                  panel.background = ggplot2::element_blank(),
+                                  panel.border = ggplot2::element_blank(),
+                                  panel.grid.major = ggplot2::element_blank(),
+                                  panel.grid.minor = ggplot2::element_blank(),
+                                  plot.background = ggplot2::element_blank())
   legend.wb <- paste0(dataDir, dataFile)
   legend.ws <- openxlsx::getSheetNames(legend.wb)
   # sites' types
@@ -80,6 +82,7 @@ zoo_legends <- function(dataDir = paste0(system.file(package = "zoowork"), "/ext
                     height = nrow(sites_types) + 2,
                     units = "cm",
                     dpi = 300)
+    return(sites_types)
   }
   # sites' zones
   if("sites_zones" %in% worksheets){
