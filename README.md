@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/394916563.svg)](https://zenodo.org/badge/latestdoi/394916563)
+
 # ***zoowork*** R package <br> Methods for Archaeozoology <img src="https://github.com/zoometh/thomashuet.github.io/blob/main/img/prj_zoowork.png" align="right" width="110"/>
 > Thomas Huet, Ariadna Nieto-Espinet
 
