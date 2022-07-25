@@ -1,4 +1,6 @@
 [![DOI](https://zenodo.org/badge/394916563.svg)](https://zenodo.org/badge/latestdoi/394916563)
+[![DOI](https://zenodo.org/badge/394916563.svg)](https://zenodo.org/badge/latestdoi/394916563)
+
 
 # ***zoowork*** R package <br> Methods for Archaeozoology <img src="https://github.com/zoometh/thomashuet.github.io/blob/main/img/prj_zoowork.png" align="right" width="110"/>
 > Thomas Huet, Ariadna Nieto-Espinet
@@ -23,7 +25,7 @@ Read a XLSX file of legend and plot them
 
 ### zoo_read
 
-Read a sample of the NISP dataset used by Nieto et al. 2021[^1] with this Supporting information (S1): https://doi.org/10.1371/journal.pone.0246201.s003
+Read a sample of the NISP dataset used by Nieto-Espinet et al. 2021[^1] with this Supporting information (S1): https://doi.org/10.1371/journal.pone.0246201.s003
 
 ```
 df <- zoo_read()
